@@ -37,7 +37,6 @@ const CreatePost = () => {
     })
   }
 
-  console.log('Title: ', inputs.postTitle, 'Body: ', inputs.postBody)
 
 
   return (
