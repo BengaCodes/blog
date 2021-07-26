@@ -1,6 +1,7 @@
-import { API, graphqlOperation } from 'aws-amplify'
-import { useState } from 'react'
+import { API, graphqlOperation, Auth } from 'aws-amplify'
+import { useEffect, useState } from 'react'
 import { createPost } from '../graphql/mutations'
+
 
 
 
@@ -15,6 +16,16 @@ const CreatePost = () => {
   const handleChange = e => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await Auth.currentUserInfo()
+
+      setInputs({ ...inputs, postOwnerId: user.id, postOwnerUsername: user.username })
+    }
+    getUser()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handlePostCreate = async e => {
     e.preventDefault()

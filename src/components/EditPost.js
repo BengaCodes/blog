@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 
 const EditPost = ({ handleClick }) => {
+
   return (
     <button onClick={handleClick}>Edit</button>
   )
